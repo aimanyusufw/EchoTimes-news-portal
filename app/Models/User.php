@@ -6,11 +6,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
+
+    /**
+     * Relation with article model 
+     * */
+    public  function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    /**
+     * Relation with like model
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
     /**
      * The attributes that are mass assignable.

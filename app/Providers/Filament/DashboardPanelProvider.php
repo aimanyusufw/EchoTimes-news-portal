@@ -61,7 +61,8 @@ class DashboardPanelProvider extends PanelProvider
                     ->navigationIcon('heroicon-o-photo')
                     ->navigationGroup('Content')
                     ->navigationSort(3)
-                    ->defaultListView('grid')
+                    ->defaultListView('grid'),
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
             ])
             ->viteTheme('resources/css/filament/dashboard/theme.css');
     }

@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "awcodes/filament-curator": "^3.6",
+        "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",

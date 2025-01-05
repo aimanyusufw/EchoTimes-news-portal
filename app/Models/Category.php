@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillabel = ["name", "slug", "description"];
+    protected $fillable = ["name", "slug", "description"];
 
     /** 
      * Relation with sub category model

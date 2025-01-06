@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Awcodes\Curator\Models\Media;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $fillabel = [
+    protected $fillable = [
         "title",
         "slug",
         "content",
@@ -19,12 +20,21 @@ class Article extends Model
         "published_at"
     ];
 
+
+    /**
+     * Relation with category
+     */
+    public function media()
+    {
+        return $this->belongsTo(Media::class, 'thumbnail_id');
+    }
+
     /**
      * Relation with category
      */
     public function category()
     {
-        return $this->belongsTo(Article::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     /**

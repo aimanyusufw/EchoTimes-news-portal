@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('advertiser_name')->nullable();
             $table->string('advertiser_email')->nullable();
             $table->string('advertiser_phone')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->enum('status', ['active', 'inactive', 'pending'])->default('pending');
             $table->timestamps();
         });

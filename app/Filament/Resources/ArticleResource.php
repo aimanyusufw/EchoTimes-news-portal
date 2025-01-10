@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\SubCategory;
 use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms;
+use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -54,6 +55,8 @@ class ArticleResource extends Resource
                             }
                             return [];
                         }),
+                    SpatieTagsInput::make('tags')
+                        ->type('categories')
                 ])->columns(['sm' => 2])->columnSpan(2),
                 Forms\Components\Grid::make()->schema([
                     Forms\Components\Section::make()->schema([

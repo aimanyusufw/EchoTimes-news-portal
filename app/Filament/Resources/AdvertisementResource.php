@@ -32,12 +32,14 @@ class AdvertisementResource extends Resource
                         Forms\Components\TextInput::make('type')
                             ->required()
                             ->maxLength(255),
-                        Forms\Components\TextInput::make('redirect_url')
-                            ->maxLength(255),
                         Forms\Components\TextInput::make('max_impressions')
                             ->numeric(),
                         Forms\Components\TextInput::make('max_views_per_user')
                             ->numeric(),
+                        Forms\Components\TextInput::make('redirect_url')
+                            ->maxLength(255),
+                        Forms\Components\Textarea::make("embeded_code")
+                            ->rows(7),
                     ])->columns(['sm' => 2])->columnSpan(2),
                     Forms\Components\Section::make("Advertiser Detail")->schema([
                         Forms\Components\TextInput::make('advertiser_name')
@@ -66,8 +68,7 @@ class AdvertisementResource extends Resource
                             ->content(fn(?Advertisement $record): string => $record ?  $record->updated_at->diffForHumans() : "-")
                     ]),
                     Forms\Components\Section::make()->schema([
-                        CuratorPicker::make("media_path")
-                            ->required(),
+                        CuratorPicker::make("media_path"),
                         Forms\Components\DatePicker::make('start_date'),
                         Forms\Components\DatePicker::make('end_date'),
                         Forms\Components\Select::make('status')

@@ -10,9 +10,11 @@ use Awcodes\Curator\Components\Forms\CuratorPicker;
 use Filament\Forms;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -31,10 +33,20 @@ class ArticleResource extends Resource
                 Forms\Components\Section::make()->schema([
                     Forms\Components\TextInput::make('title')
                         ->required()
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(function (string $operation, ?string $state, $set) {
+                            if ($operation === 'edit' || is_null($state)) {
+                                return;
+                            }
+                            $set('slug', Str::slug($state));
+                        })
                         ->maxLength(255),
                     Forms\Components\TextInput::make('slug')
+                        ->readonly()
+                        ->unique(ignoreRecord: true)
                         ->required()
                         ->maxLength(255),
+
                     Forms\Components\Textarea::make('short_description')
                         ->rows(5)
                         ->columnSpanFull(),
@@ -70,7 +82,9 @@ class ArticleResource extends Resource
                             ->content(fn(?Article $record) => $record?->author?->name ?? '-')
                             ->label('Author'),
                         CuratorPicker::make("thumbnail_id")->label("Thumbnail"),
-                        Forms\Components\DateTimePicker::make('published_at'),
+                        Forms\Components\DateTimePicker::make('published_at')
+                            ->seconds(false)
+                            ->default(now()),
                         Forms\Components\Radio::make('status')
                             ->options([
                                 'draft' => "Draft",
@@ -89,18 +103,19 @@ class ArticleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('media.path')
+                    ->default("https://cdn-icons-png.flaticon.com/512/13434/13434972.png")
                     ->label("Thumbnail")
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->limit(40)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('author.name')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
-                    ->numeric()
+                    ->default("Uncategorize")
                     ->sortable(),
                 Tables\Columns\TextColumn::make('subCategory.name')
-                    ->numeric()
+                    ->default("Uncategorize")
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->formatStateUsing(function ($state) {
@@ -118,8 +133,8 @@ class ArticleResource extends Resource
                         'gray' => 'archived',
                     ]),
                 Tables\Columns\TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
+                    ->since()
+                    ->dateTimeTooltip(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
                     ->sortable()

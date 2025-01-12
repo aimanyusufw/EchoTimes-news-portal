@@ -12,6 +12,7 @@ use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -31,8 +32,17 @@ class CategoryResource extends Resource
                     Forms\Components\Section::make()->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(function (string $operation, ?string $state, $set) {
+                                if ($operation === 'edit' || is_null($state)) {
+                                    return;
+                                }
+                                $set('slug', Str::slug($state));
+                            })
                             ->maxLength(255),
                         Forms\Components\TextInput::make('slug')
+                            ->readonly()
+                            ->unique(ignoreRecord: true)
                             ->required()
                             ->maxLength(255),
                         Forms\Components\Textarea::make('description')
@@ -45,8 +55,17 @@ class CategoryResource extends Resource
                         ->schema([
                             Forms\Components\TextInput::make('name')
                                 ->required()
+                                ->live(onBlur: true)
+                                ->afterStateUpdated(function (string $operation, ?string $state, $set) {
+                                    if ($operation === 'edit' || is_null($state)) {
+                                        return;
+                                    }
+                                    $set('slug', Str::slug($state));
+                                })
                                 ->maxLength(255),
                             Forms\Components\TextInput::make('slug')
+                                ->readonly()
+                                ->unique(ignoreRecord: true)
                                 ->required()
                                 ->maxLength(255),
                             Forms\Components\Textarea::make('description')
@@ -82,7 +101,8 @@ class CategoryResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->date()
+                    ->since()
+                    ->dateTimeTooltip()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()

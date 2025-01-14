@@ -57,7 +57,7 @@ class CategoryResource extends Resource
                                 ->required()
                                 ->live(onBlur: true)
                                 ->afterStateUpdated(function (string $operation, ?string $state, $set) {
-                                    if ($operation === 'edit' || is_null($state)) {
+                                    if (is_null($state)) {
                                         return;
                                     }
                                     $set('slug', Str::slug($state));

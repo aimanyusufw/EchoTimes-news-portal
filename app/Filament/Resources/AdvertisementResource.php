@@ -86,8 +86,7 @@ class AdvertisementResource extends Resource
                         Forms\Components\Select::make('location')
                             ->options([
                                 "header" => "Header : 1600x600",
-                                "right_side" => "Right Side : 300x600",
-                                "left_side" => "Left Side : 300x600",
+                                "side" => "Side : 300x600",
                                 "bottom" => "Bottom : 728x90",
                             ])
                             ->required(),

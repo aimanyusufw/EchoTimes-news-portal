@@ -54,14 +54,16 @@ class ArticleResource extends Resource
                         ->required()
                         ->columnSpanFull(),
                     Forms\Components\Select::make('category_id')
+                        ->label("Category")
                         ->searchable()
                         ->relationship(name: "category", titleAttribute: 'name'),
                     Forms\Components\Select::make('sub_category_id')
+                        ->label("Sub Category")
                         ->searchable()
                         ->options(function (callable $get) {
-                            $provinceId = $get('category_id');
-                            if ($provinceId) {
-                                return SubCategory::where('category_id', $provinceId)->get()->mapWithKeys(function ($category) {
+                            $categoryId = $get('category_id');
+                            if ($categoryId) {
+                                return SubCategory::where('category_id', $categoryId)->get()->mapWithKeys(function ($category) {
                                     return [$category->id => "{$category->name}"];
                                 });;
                             }

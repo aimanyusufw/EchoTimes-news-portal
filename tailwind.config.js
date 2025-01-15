@@ -2,6 +2,7 @@ import defaultTheme from "tailwindcss/defaultTheme";
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: "class",
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./storage/framework/views/*.php",
@@ -11,9 +12,16 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
+        container: {
+            center: true,
+            padding: "16px",
+        },
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                sans: ["Inter", ...defaultTheme.fontFamily.sans],
+            },
+            screens: {
+                "2xl": "1280px",
             },
         },
     },

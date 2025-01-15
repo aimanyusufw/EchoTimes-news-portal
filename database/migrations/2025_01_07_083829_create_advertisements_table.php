@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('type');
-            $table->int('media_path')->nullable();
+            $table->integer('media_path')->nullable();
             $table->text('embeded_code')->nullable();
             $table->string('redirect_url')->nullable();
             $table->string('location');

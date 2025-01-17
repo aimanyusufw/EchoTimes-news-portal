@@ -3,20 +3,27 @@ import { IoMoon, IoSunny } from "react-icons/io5";
 import { newsCategory } from "../../Dummy/data";
 
 export default function Header() {
-    const [darkMode, setDarkMode] = useState(() => {
-        return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    });
+    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
-        if (darkMode) {
-            document.body.classList.add("dark");
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+            setDarkMode(savedTheme === "dark");
+            document.body.classList.toggle("dark", savedTheme === "dark");
         } else {
-            document.body.classList.remove("dark");
+            const mediaQuery = window.matchMedia(
+                "(prefers-color-scheme: dark)"
+            );
+            setDarkMode(mediaQuery.matches);
+            document.body.classList.toggle("dark", mediaQuery.matches);
         }
-    }, [darkMode]);
+    }, []);
 
-    const handleMode = () => {
-        setDarkMode((prevMode) => !prevMode);
+    const toggleDarkMode = () => {
+        const newTheme = !darkMode ? "dark" : "light";
+        setDarkMode(!darkMode);
+        document.body.classList.toggle("dark", newTheme === "dark");
+        localStorage.setItem("theme", newTheme);
     };
 
     return (
@@ -31,21 +38,21 @@ export default function Header() {
                             {darkMode ? (
                                 <img
                                     src="/assets/Logo_white.svg"
-                                    className="w-48"
+                                    className="w-24 md:w-36 lg:w-40"
                                     alt="True Angle Logo"
                                 />
                             ) : (
                                 <img
                                     src="/assets/Logo_black.svg"
-                                    className="w-48"
+                                    className="w-24 md:w-36 lg:w-40"
                                     alt="True Angle Logo"
                                 />
                             )}
                         </a>
                         <div className="flex items-center space-x-6 rtl:space-x-reverse">
                             <button
-                                className="px-3 py-3 shadow-md dark:shadow-neutral-800 rounded-md text-black dark:text-white"
-                                onClick={handleMode}
+                                className="px-3 py-3 shadow-sm dark:shadow-neutral-800 rounded-md text-black dark:text-white"
+                                onClick={toggleDarkMode}
                             >
                                 {darkMode ? (
                                     <IoSunny className="h-3 w-3" />
@@ -74,7 +81,7 @@ export default function Header() {
                                         key={data.id}
                                     >
                                         <a
-                                            href="#"
+                                            href={data.name.toLowerCase()}
                                             className="text-gray-900 dark:text-white hover:text-[#1E88E5]"
                                             aria-current="page"
                                         >
@@ -86,7 +93,7 @@ export default function Header() {
                                                 newsCategory.length - 1
                                                     ? "hidden"
                                                     : ""
-                                            } w-[1px] h-1/2 bg-gray-300 dark:bg-gray-700`}
+                                            } w-[1px] h-1/2 bg-gray-300 dark:bg-gray-400`}
                                         />
                                     </li>
                                 ))}

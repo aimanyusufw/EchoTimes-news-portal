@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import BaseLayouts from "@/Layouts/BaseLayouts";
-import { FaHome } from "react-icons/fa";
-import { Head } from "@inertiajs/react";
+import BreadCrumb from "../Components/Partials/BreadCrumb";
 
 export default function Home() {
     return (
@@ -9,9 +8,7 @@ export default function Home() {
             <section className="pt-36 pb-8">
                 <div className="container">
                     <div className="md:px-4">
-                        <h1 className="text-black dark:text-white">
-                            Hello World
-                        </h1>
+                        <BreadCrumb data={[{ name: "News", url: "/" }]} />
                     </div>
                 </div>
             </section>

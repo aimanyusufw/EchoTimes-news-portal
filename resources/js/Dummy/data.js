@@ -20,3 +20,12 @@ export const newsCategory = [
         name: "Technology",
     },
 ];
+
+export const latestNews = [
+    {
+        img: "",
+        title: "Hello",
+        date: new Date(),
+        category: "Sport",
+    },
+];

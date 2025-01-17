@@ -4,7 +4,7 @@ import "./bootstrap";
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
 
-const appName = "Nusa Kabar";
+const appName = "True Angle";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

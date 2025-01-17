@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMoon, IoSunny } from "react-icons/io5";
+import { newsCategory } from "../../Dummy/data";
 
 export default function Header() {
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(() => {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    });
+
+    useEffect(() => {
+        if (darkMode) {
+            document.body.classList.add("dark");
+        } else {
+            document.body.classList.remove("dark");
+        }
+    }, [darkMode]);
 
     const handleMode = () => {
-        document.body.classList.toggle("dark");
-        setDarkMode(!darkMode);
+        setDarkMode((prevMode) => !prevMode);
     };
 
     return (
@@ -15,15 +25,22 @@ export default function Header() {
                 <div className="container">
                     <div className="flex flex-wrap justify-between items-center py-4 md:px-4">
                         <a
-                            href="https://flowbite.com"
+                            href="/"
                             className="flex items-center space-x-3 rtl:space-x-reverse"
                         >
-                            <span className="self-center text-xl font-extrabold whitespace-nowrap dark:text-white">
-                                <span className="bg-[#388E3C] px-1.5 py-1 me-1.5 rounded-md capitalize text-white">
-                                    NUSA
-                                </span>
-                                KABAR
-                            </span>
+                            {darkMode ? (
+                                <img
+                                    src="/assets/Logo_white.svg"
+                                    className="w-48"
+                                    alt="True Angle Logo"
+                                />
+                            ) : (
+                                <img
+                                    src="/assets/Logo_black.svg"
+                                    className="w-48"
+                                    alt="True Angle Logo"
+                                />
+                            )}
                         </a>
                         <div className="flex items-center space-x-6 rtl:space-x-reverse">
                             <button
@@ -44,40 +61,35 @@ export default function Header() {
                 <div className="container">
                     <div className="md:px-4 py-3">
                         <div className="flex items-center">
-                            <ul className="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-gray-900 dark:text-white hover:underline"
-                                        aria-current="page"
+                            <ul className="flex flex-row font-medium mt-0 text-sm">
+                                {newsCategory.map((data, index) => (
+                                    <li
+                                        className={`relative ${
+                                            index === 0 ? "pe-5" : "px-5"
+                                        } ${
+                                            index === newsCategory.length - 1
+                                                ? "border-x-0"
+                                                : "border-s-0"
+                                        }`}
+                                        key={data.id}
                                     >
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-gray-900 dark:text-white hover:underline"
-                                    >
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-gray-900 dark:text-white hover:underline"
-                                    >
-                                        Team
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        className="text-gray-900 dark:text-white hover:underline"
-                                    >
-                                        Features
-                                    </a>
-                                </li>
+                                        <a
+                                            href="#"
+                                            className="text-gray-900 dark:text-white hover:text-[#1E88E5]"
+                                            aria-current="page"
+                                        >
+                                            {data.name}
+                                        </a>
+                                        <span
+                                            className={`absolute top-1/4 left-full ${
+                                                index ===
+                                                newsCategory.length - 1
+                                                    ? "hidden"
+                                                    : ""
+                                            } w-[1px] h-1/2 bg-gray-300 dark:bg-gray-700`}
+                                        />
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>

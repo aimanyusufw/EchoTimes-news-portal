@@ -11,9 +11,11 @@ export default function BreadCrumb({ data = [] }) {
                         <span>Home</span>
                     </a>
                 </li>
-                <span className="px-4">/</span>
                 {data.map((item, index) => (
                     <React.Fragment key={item.id}>
+                        <span className="px-4 text-gray-500 dark:text-gray-400">
+                            /
+                        </span>
                         <li>
                             <a
                                 href={item.url}
@@ -22,9 +24,6 @@ export default function BreadCrumb({ data = [] }) {
                                 <span>{item.name}</span>
                             </a>
                         </li>
-                        {index < data.length - 1 && (
-                            <span className="px-4">/</span>
-                        )}
                     </React.Fragment>
                 ))}
             </ol>

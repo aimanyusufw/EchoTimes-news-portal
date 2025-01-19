@@ -38,13 +38,13 @@ export default function Header() {
                             {darkMode ? (
                                 <img
                                     src="/assets/Logo_white.svg"
-                                    className="w-24 md:w-36 lg:w-40"
+                                    className="w-32 md:w-36 lg:w-40"
                                     alt="True Angle Logo"
                                 />
                             ) : (
                                 <img
                                     src="/assets/Logo_black.svg"
-                                    className="w-24 md:w-36 lg:w-40"
+                                    className="w-32 md:w-36 lg:w-40"
                                     alt="True Angle Logo"
                                 />
                             )}
@@ -66,7 +66,7 @@ export default function Header() {
             </nav>
             <nav className="bg-gray-50 dark:bg-neutral-700">
                 <div className="container">
-                    <div className="md:px-4 py-3">
+                    <div className="md:px-4 py-3  overflow-y-scroll">
                         <div className="flex items-center">
                             <ul className="flex flex-row font-medium mt-0 text-sm">
                                 {newsCategory.map((data, index) => (
@@ -82,7 +82,7 @@ export default function Header() {
                                     >
                                         <a
                                             href={data.name.toLowerCase()}
-                                            className="text-gray-900 dark:text-white hover:text-[#1E88E5]"
+                                            className="text-gray-900 dark:text-white hover:underline"
                                             aria-current="page"
                                         >
                                             {data.name}

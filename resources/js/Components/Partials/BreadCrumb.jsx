@@ -3,7 +3,7 @@ import { FaHome } from "react-icons/fa";
 
 export default function BreadCrumb({ data = [] }) {
     return (
-        <nav>
+        <nav className="md:px-4 mb-4 md:mb-6">
             <ol className="flex text-neutral-800 dark:text-white text-xs md:text-sm">
                 <li>
                     <a href="/" className="flex items-center gap-2">

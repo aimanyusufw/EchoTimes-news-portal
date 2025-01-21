@@ -71,7 +71,7 @@ const HeroSection = ({ news }) => {
                             <h1 className="line-clamp-1 text-lg md:text-xl lg:text-2xl font-semibold">
                                 {item.title}
                             </h1>
-                            <p className="text-xs line-clamp-1">
+                            <p className="text-xs line-clamp-1 text-neutral-600 dark:text-neutral-400">
                                 {item.excerpt}
                             </p>
                             <h2 className="text-xs font-medium text-neutral-600 dark:text-neutral-300">

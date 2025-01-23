@@ -2,22 +2,27 @@ export const newsCategory = [
     {
         id: 1,
         name: "Politics",
+        image: "https://images.unsplash.com/photo-1569000971870-7605f9bd8734?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fHBvbGl0aWNzfGVufDB8fDB8fHww",
     },
     {
         id: 2,
         name: "Sport",
+        image: "https://images.unsplash.com/photo-1568495030119-11b7f3a05920?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGZvb3RiYWx8ZW58MHx8MHx8fDA%3D",
     },
     {
         id: 3,
         name: "World",
+        image: "https://images.unsplash.com/photo-1737357126863-c6e6b1fff33d?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
         id: 4,
         name: "Finance",
+        image: "https://images.unsplash.com/photo-1640161704729-cbe966a08476?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
         id: 5,
         name: "Technology",
+        image: "https://images.unsplash.com/photo-1535136104956-115a2cd67fc4?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
 ];
 

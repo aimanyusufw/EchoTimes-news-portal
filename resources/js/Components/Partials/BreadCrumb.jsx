@@ -12,7 +12,7 @@ export default function BreadCrumb({ data = [] }) {
                     </a>
                 </li>
                 {data.map((item, index) => (
-                    <React.Fragment key={item.id}>
+                    <React.Fragment key={index}>
                         <span className="px-4 text-gray-500 dark:text-gray-400">
                             /
                         </span>

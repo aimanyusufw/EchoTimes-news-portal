@@ -20,9 +20,6 @@ export default {
             fontFamily: {
                 sans: ["Inter", ...defaultTheme.fontFamily.sans],
             },
-            screens: {
-                "2xl": "1280px",
-            },
         },
     },
     plugins: [],

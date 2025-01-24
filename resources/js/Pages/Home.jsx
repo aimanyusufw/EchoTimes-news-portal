@@ -6,6 +6,8 @@ import HeroSection from "../Components/Layout/HeroSection";
 import TrendyNewsSection from "../Components/Section/TrendyNewsSection";
 import DiscoverNewsSection from "../Components/Section/DiscoverNewsSection";
 import RecomendNewsSection from "../Components/Section/RecomendNewsSection";
+import { FaCalendar } from "react-icons/fa";
+import CategorNewsSection from "../Components/Section/CategorNewsSection";
 
 export default function Home() {
     return (
@@ -19,6 +21,9 @@ export default function Home() {
             <TrendyNewsSection news={headerNews} />
             <DiscoverNewsSection category={newsCategory} />
             <RecomendNewsSection news={[...headerNews, ...headerNews]} />
+            <CategorNewsSection name={"Finance News"} news={headerNews} />
+            <CategorNewsSection name={"Sport News"} news={headerNews} />
+            <CategorNewsSection name={"Technology News"} news={headerNews} />
         </BaseLayouts>
     );
 }

@@ -5,6 +5,7 @@ import { headerNews, newsCategory } from "../Dummy/data";
 import HeroSection from "../Components/Layout/HeroSection";
 import TrendyNewsSection from "../Components/Section/TrendyNewsSection";
 import DiscoverNewsSection from "../Components/Section/DiscoverNewsSection";
+import RecomendNewsSection from "../Components/Section/RecomendNewsSection";
 
 export default function Home() {
     return (
@@ -17,6 +18,7 @@ export default function Home() {
             </section>
             <TrendyNewsSection news={headerNews} />
             <DiscoverNewsSection category={newsCategory} />
+            <RecomendNewsSection news={[...headerNews, ...headerNews]} />
         </BaseLayouts>
     );
 }

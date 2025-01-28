@@ -9,9 +9,9 @@ import RecomendNewsSection from "../Components/Section/RecomendNewsSection";
 import { FaCalendar } from "react-icons/fa";
 import CategorNewsSection from "../Components/Section/CategorNewsSection";
 
-export default function Home() {
+export default function Home({ categories }) {
     return (
-        <BaseLayouts>
+        <BaseLayouts categories={categories}>
             <section className="md:pt-36 md:pb-8">
                 <div className="container">
                     <BreadCrumb data={[{ name: "News", url: "/" }]} />

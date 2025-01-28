@@ -1,8 +1,8 @@
+import { Link } from "@inertiajs/react";
 import React, { useEffect, useState } from "react";
 import { IoMoon, IoSunny } from "react-icons/io5";
-import { newsCategory } from "../../Dummy/data";
 
-export default function Header() {
+export default function Header({ categories }) {
     const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
@@ -69,28 +69,27 @@ export default function Header() {
                     <div className="md:px-4 py-3  overflow-y-scroll">
                         <div className="flex items-center">
                             <ul className="flex flex-row font-medium mt-0 text-sm">
-                                {newsCategory.map((data, index) => (
+                                {categories.map((data, index) => (
                                     <li
                                         className={`relative ${
                                             index === 0 ? "pe-5" : "px-5"
                                         } ${
-                                            index === newsCategory.length - 1
+                                            index === categories.length - 1
                                                 ? "border-x-0"
                                                 : "border-s-0"
                                         }`}
                                         key={data.id}
                                     >
-                                        <a
-                                            href={data.name.toLowerCase()}
+                                        <Link
+                                            href={"category/" + data.slug}
                                             className="text-gray-900 dark:text-white hover:underline"
                                             aria-current="page"
                                         >
                                             {data.name}
-                                        </a>
+                                        </Link>
                                         <span
                                             className={`absolute top-1/4 left-full ${
-                                                index ===
-                                                newsCategory.length - 1
+                                                index === categories.length - 1
                                                     ? "hidden"
                                                     : ""
                                             } w-[1px] h-1/2 bg-gray-300 dark:bg-gray-400`}

@@ -11,6 +11,11 @@ class Category extends Model
 
     protected $fillable = ["name", "slug", "description"];
 
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
+
     /** 
      * Relation with sub category model
      * Category has many sub category

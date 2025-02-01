@@ -1,3 +1,4 @@
+import { formatDistanceToNow } from "date-fns";
 import React, { useEffect, useState } from "react";
 
 const HeroSection = ({ news }) => {
@@ -23,7 +24,10 @@ const HeroSection = ({ news }) => {
             <div className="w-full md:w-3/5 mb-5 md:mb-0">
                 <div className="w-full h-[500px] relative rounded-md overflow-hidden">
                     <img
-                        src={news[mainNews].image}
+                        src={
+                            news[mainNews].image ??
+                            "https://a.espncdn.com/combiner/i?img=%2Fphoto%2F2025%2F0118%2Fr1440224_1296x729_16%2D9.jpg&w=920&h=518&scale=crop&cquality=80&location=origin&format=jpg"
+                        }
                         alt=""
                         className="h-full w-full object-cover"
                     />
@@ -31,11 +35,14 @@ const HeroSection = ({ news }) => {
                     <div className="absolute bottom-5 left-5">
                         <div className="flex items-center text-white text-xs md:text-sm font-medium mb-4">
                             <span className="text-white bg-blue-600 px-3 py-1.5 rounded-full me-2">
-                                {news[mainNews].category}
+                                {news[mainNews].category.name}
                             </span>
                             {"•"}
-                            <span className="ps-2">
-                                {news[mainNews].published_at}
+                            <span className="ps-2 capitalize">
+                                {formatDistanceToNow(
+                                    new Date(news[mainNews].published_at),
+                                    { addSuffix: true }
+                                )}
                             </span>
                         </div>
                         <h1 className="text-xl md:text-2xl lg:text-4xl font-bold max-w-2xl lg:leading-relaxed text-white">
@@ -56,7 +63,7 @@ const HeroSection = ({ news }) => {
                 {news.map((item, index) => (
                     <div
                         onClick={() => setMainNews(index)}
-                        key={index}
+                        key={item.slug}
                         className={`flex items-center px-1 md:px-5 py-4 mb-1 cursor-pointer hover:bg-neutral-300 dark:hover:bg-neutral-700 rounded-md text-neutral-800 dark:text-white ${
                             mainNews == index &&
                             "bg-neutral-300 dark:bg-neutral-700"
@@ -74,10 +81,13 @@ const HeroSection = ({ news }) => {
                             <p className="text-xs line-clamp-1 text-neutral-600 dark:text-neutral-400">
                                 {item.excerpt}
                             </p>
-                            <h2 className="text-xs font-medium text-neutral-600 dark:text-neutral-300">
+                            <h2 className="text-xs font-medium text-neutral-600 dark:text-neutral-300 capitalize">
                                 {item.author.name}{" "}
                                 <span className="px-2 text-xs">•</span>
-                                {item.published_at}
+                                {formatDistanceToNow(
+                                    new Date(item.published_at),
+                                    { addSuffix: true }
+                                )}
                             </h2>
                         </div>
                     </div>

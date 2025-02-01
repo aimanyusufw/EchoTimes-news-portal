@@ -6,16 +6,15 @@ import HeroSection from "../Components/Layout/HeroSection";
 import TrendyNewsSection from "../Components/Section/TrendyNewsSection";
 import DiscoverNewsSection from "../Components/Section/DiscoverNewsSection";
 import RecomendNewsSection from "../Components/Section/RecomendNewsSection";
-import { FaCalendar } from "react-icons/fa";
 import CategorNewsSection from "../Components/Section/CategorNewsSection";
 
-export default function Home({ categories }) {
+export default function Home({ categories, headerPost }) {
     return (
         <BaseLayouts categories={categories}>
             <section className="md:pt-36 md:pb-8">
                 <div className="container">
                     <BreadCrumb data={[{ name: "News", url: "/" }]} />
-                    <HeroSection news={headerNews} />
+                    <HeroSection news={headerPost} />
                 </div>
             </section>
             <TrendyNewsSection news={headerNews} />

@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Awcodes\Curator\Models\Media;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Tags\HasTags;
 
 class Article extends Model
 {
-    use SoftDeletes, HasTags;
+    use SoftDeletes, HasTags, HasFactory;
 
     protected $fillable = [
         "title",

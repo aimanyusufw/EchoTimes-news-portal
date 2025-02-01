@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,30 +18,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // $user = User::create(["name" => "Admin", "email" => "admin@admin.com", "password" => "12345678"]);
+        // $user->assignRole("super_admin");
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // $categories =  [
+        //     "Politics",
+        //     "World",
+        //     "Finance",
+        //     "Sport",
+        //     "Technology"
+        // ];
 
-        $user = User::create(["name" => "Admin", "email" => "admin@admin.com", "password" => "12345678"]);
-        $user->assignRole("super_admin");
+        // foreach ($categories as $category) {
+        //     Category::create([
+        //         "name" => $category,
+        //         "slug" => Str::slug($category),
+        //         "description" => "Post fot category " . $category
+        //     ]);
+        // }
 
-        $categories =  [
-            "Politics",
-            "World",
-            "Finance",
-            "Sport",
-            "Technology"
-        ];
-
-        foreach ($categories as $category) {
-            Category::create([
-                "name" => $category,
-                "slug" => Str::slug($category),
-                "description" => "Post fot category " . $category
-            ]);
-        }
+        // Article::factory(10)->create();
     }
 }
